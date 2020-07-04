@@ -4,8 +4,8 @@ import GithubContext from '../../context/github/githubContext';
 
 const Search = ({
 	// searchUsers,
-	showClear,
-	clearUsers,
+	// showClear,
+	// clearUsers,
 	setAlert,
 }) => {
 	const githubContext = useContext(GithubContext);
@@ -37,10 +37,10 @@ const Search = ({
 					className='btn btn-dark btn-block'
 				/>
 			</form>
-			{showClear && (
+			{githubContext.users.length > 0 && (
 				<button
 					className='btn btn-light btn-block'
-					onClick={clearUsers}
+					onClick={githubContext.clearUsers}
 				>
 					Clear
 				</button>
@@ -51,8 +51,8 @@ const Search = ({
 
 Search.propTypes = {
 	// searchUsers: PropTypes.func.isRequired,
-	clearUsers: PropTypes.func.isRequired,
-	showClear: PropTypes.bool.isRequired,
+	// clearUsers: PropTypes.func.isRequired,
+	// showClear: PropTypes.bool.isRequired,
 	setAlert: PropTypes.func.isRequired,
 };
 
