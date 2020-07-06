@@ -10,15 +10,15 @@ import User from './components/users/User';
 import Search from './components/users/Search';
 import Alert from './components/layout/Alert';
 import About from './components/pages/About';
-import axios from 'axios';
+// import axios from 'axios';
 import GithubState from './context/github/GithubState';
 import './App.css';
 
 const App = () => {
 	const //[users, setUsers] = useState([]),
 		// [user, setUser] = useState({}),
-		[repos, setRepos] = useState([]),
-		[loading, setLoading] = useState(false),
+		// [repos, setRepos] = useState([]),
+		// [loading, setLoading] = useState(false),
 		[alert, setAlert] = useState(null);
 
 	// const searchUsers = async (text) => {
@@ -41,14 +41,14 @@ const App = () => {
 	// 	setLoading(false);
 	// };
 
-	const getUserRepos = async (username) => {
-		setLoading(true);
-		const res = await axios.get(
-			`http://api.github.com/users/${username}/repos?per_page=5&sort=created:asc&client_id=${process.env.REACT_APP_GITHUB_CLIENT_ID}&client_secret=${process.env.REACT_APP_GITHUB_CLIENT_SECRET}`
-		);
-		setRepos(res.data);
-		setLoading(false);
-	};
+	// const getUserRepos = async (username) => {
+	// 	setLoading(true);
+	// 	const res = await axios.get(
+	// 		`http://api.github.com/users/${username}/repos?per_page=5&sort=created:asc&client_id=${process.env.REACT_APP_GITHUB_CLIENT_ID}&client_secret=${process.env.REACT_APP_GITHUB_CLIENT_SECRET}`
+	// 	);
+	// 	setRepos(res.data);
+	// 	setLoading(false);
+	// };
 
 	// const clearUsers = () => {
 	// 	setUsers([]);
@@ -99,16 +99,17 @@ const App = () => {
 							<Route
 								exact
 								path='/user/:login'
-								render={(props) => (
-									<User
-										{...props}
-										getUserRepos={getUserRepos}
-										repos={repos}
-										// getUser={getUser}
-										// loading={loading}
-										// user={user}
-									/>
-								)}
+								component={User}
+								// render={(props) => (
+								// <User
+								// {...props}
+								// getUserRepos={getUserRepos}
+								// repos={repos}
+								// getUser={getUser}
+								// loading={loading}
+								// user={user}
+								// />
+								// )}
 							/>
 						</Switch>
 					</div>
