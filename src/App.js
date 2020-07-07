@@ -12,14 +12,15 @@ import Alert from './components/layout/Alert';
 import About from './components/pages/About';
 // import axios from 'axios';
 import GithubState from './context/github/GithubState';
+import AlertState from './context/alert/AlertState';
 import './App.css';
 
 const App = () => {
-	const //[users, setUsers] = useState([]),
-		// [user, setUser] = useState({}),
-		// [repos, setRepos] = useState([]),
-		// [loading, setLoading] = useState(false),
-		[alert, setAlert] = useState(null);
+	// const [users, setUsers] = useState([]),
+	// [user, setUser] = useState({}),
+	// [repos, setRepos] = useState([]),
+	// [loading, setLoading] = useState(false),
+	// [alert, setAlert] = useState(null);
 
 	// const searchUsers = async (text) => {
 	// 	setLoading(true);
@@ -55,66 +56,68 @@ const App = () => {
 	// 	setLoading(false);
 	// };
 
-	const showAlert = (msg, type) => {
-		setAlert({ msg, type });
-		setTimeout(() => setAlert(null), 5000);
-	};
+	// 	const showAlert = (msg, type) => {
+	// 	setAlert({ msg, type });
+	// 	setTimeout(() => setAlert(null), 5000);
+	// };
 
 	return (
 		<GithubState>
-			<Router>
-				<div className='App'>
-					<Navbar
-						title='Github Finder'
-						icon='fab fa-github'
-					/>
-					<div className='container'>
-						<Alert alert={alert} />
-						<Switch>
-							<Route
-								exact
-								path='/'
-								render={(props) => (
-									<Fragment>
-										<Search
+			<AlertState>
+				<Router>
+					<div className='App'>
+						<Navbar
+						// title='Github Finder'
+						// icon='fab fa-github'
+						/>
+						<div className='container'>
+							<Alert />
+							<Switch>
+								<Route
+									exact
+									path='/'
+									render={(props) => (
+										<Fragment>
+											<Search
 											// searchUsers={searchUsers}
 											// clearUsers={clearUsers}
 											// showClear={
 											// 	users.length > 0 ? true : false
 											// }
-											setAlert={showAlert}
-										/>
-										<Users
-										// loading={loading}
-										// users={users}
-										/>
-									</Fragment>
-								)}
-							/>
-							<Route
-								exact
-								path='/about'
-								component={About}
-							/>
-							<Route
-								exact
-								path='/user/:login'
-								component={User}
-								// render={(props) => (
-								// <User
-								// {...props}
-								// getUserRepos={getUserRepos}
-								// repos={repos}
-								// getUser={getUser}
-								// loading={loading}
-								// user={user}
-								// />
-								// )}
-							/>
-						</Switch>
+											// setAlert={showAlert}
+											/>
+											<Users
+											// loading={loading}
+											// users={users}
+											/>
+										</Fragment>
+									)}
+								/>
+								<Route
+									exact
+									path='/about'
+									component={About}
+								/>
+								<Route
+									exact
+									path='/user/:login'
+									component={User}
+									// render={(props) => (
+									// <User
+									// {...props}
+									// getUserRepos={getUserRepos}
+									// repos={repos}
+									// getUser={getUser}
+									// loading={loading}
+									// user={user}
+									// />
+									// )}
+								/>
+							</Switch>
+						</div>
 					</div>
-				</div>
-			</Router>
+				</Router>
+			</AlertState>
 		</GithubState>
 	);
 };
